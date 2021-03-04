@@ -9,16 +9,17 @@ let pokedex = [
 
 //for loop begins iterating at 0 and continues to loop (i ++) so long as the length of the array: pokedex is less than its length 
 for (let i = 0; i < pokedex.length; i++){
-    if (pokedex[i].weight > 10 && pokedex[i].weight < 15){ // checks the weight of an item in the iteration  and writes out the below
+    if (pokedex[i].weight > 10 && pokedex[i].weight < 15){ // if statement checks the weight of an item in the iteration  and writes out the below
         document.write(`${(pokedex[i].name)} - Height: ${pokedex[i].height}cm Weight: ${pokedex[i].weight} lbs its a lil heavy<br/> <br/>`);// this line is using the placeholders (${...}) for each item in the array, and then these are inside the template literals  indicated by backticks `...`
     }else if (pokedex[i].weight > 15 && pokedex[i].weight < 20) {
         document.write(`${(pokedex[i].name)} - Height: ${pokedex[i].height}cm Weight: ${pokedex[i].weight} lbs its getting heavier<br/> <br/>`);
     }else {
         document.write(`${(pokedex[i].name)} - Height: ${pokedex[i].height}cm Weight: ${pokedex[i].weight} lbs its a heavy boi<br/> <br/>`);
-    }
-}
+    }// ends the checks within the loop
+}//ends the for loop
 
 
+//https://careerfoundry.com/en/course/full-stack-immersion/exercise/javascript-basics-1#primitive-data-types
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 
