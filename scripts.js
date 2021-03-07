@@ -1,24 +1,34 @@
 // pokedex is an array with three items where each item has key value, name, height and weight and the type is another array water, grass poison etc... 
 let pokedex = [
-    {name: 'Bulbasaur', height: 11, weight: 12, type:['grass', 'poison']},
-    {name: 'Squirtle', height: 15, weight: 16, type:['water']},
-    {name: 'Charmander', height: 11, weight: 100, type:['Fire']}
+    {name: 'Bulbasaur', height: 7, weight: 12, types:['grass', 'poison']},
+    {name: 'Squirtle', height: 15, weight: 16, types:['water']},
+    {name: 'Charmander', height: 11, weight: 100, types:['Fire']}
 ]; //closes the array
 
-
-
-//for loop begins iterating at 0 and continues to loop (i ++) so long as the length of the array: pokedex is less than its length 
 for (let i = 0; i < pokedex.length; i++){
-    if (pokedex[i].weight > 10 && pokedex[i].weight < 15){ // if statement checks the weight of an item in the iteration  and writes out the below
-        document.write(`${(pokedex[i].name)} - Height: ${pokedex[i].height}cm Weight: ${pokedex[i].weight} lbs its a lil heavy<br/> <br/>`);// this line is using the placeholders (${...}) for each item in the array, and then these are inside the template literals  indicated by backticks `...`
-    }else if (pokedex[i].weight > 15 && pokedex[i].weight < 20) {
-        document.write(`${(pokedex[i].name)} - Height: ${pokedex[i].height}cm Weight: ${pokedex[i].weight} lbs its getting heavier<br/> <br/>`);
-    }else {
-        document.write(`${(pokedex[i].name)} - Height: ${pokedex[i].height}cm Weight: ${pokedex[i].weight} lbs its a heavy boi<br/> <br/>`);
-    }// ends the checks within the loop
-}//ends the for loop
+    let size = " " //setting size to empty for use with each iteration over the loop, so that each item can be loaded into 'size' and then displayed in the document.write
+    if (pokedex[i].height < 10){
+        size = "this is a small pokemon"
+    } else if (pokedex[i].height > 13){
+        size = "this is a big pokemon"
+    } else {
+        size = " this is a medium pokemon"
+    }
+    document.write(pokedex[i].name + 
+        " ( height: " + 
+        pokedex[i].height +
+        ")"+
+        "<br/>" +
+        size +
+        "<br/>"+
+        pokedex[i].types +
+        "<br/>")
+}
 
 
+
+
+// replacing wet code with dry code https://codinglead.github.io/javascript/what-is-DRY-code
 //https://careerfoundry.com/en/course/full-stack-immersion/exercise/javascript-basics-1#primitive-data-types
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
