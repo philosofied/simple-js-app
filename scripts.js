@@ -1,35 +1,38 @@
 // pokedex is an array with three items where each item has key value, name, height and weight and the type is another array water, grass poison etc... 
 let pokedex = [
-    {name: 'Bulbasaur', height: 7, weight: 12, types:['grass', 'poison']},
-    {name: 'Squirtle', height: 15, weight: 16, types:['water']},
+    {name: 'Bulbasaur', height: 4, weight: 12, types:['grass', 'poison']},
+    {name: 'Squirtle', height: 4, weight: 16, types:['water']},
     {name: 'Charmander', height: 11, weight: 100, types:['Fire']}
 ]; //closes the array
 
-for (let i = 0; i < pokedex.length; i++){
-    let size = " " //setting size to empty for use with each iteration over the loop, so that each item can be loaded into 'size' and then displayed in the document.write
-    if (pokedex[i].height < 10){
-        size = "this is a small pokemon"
-    } else if (pokedex[i].height > 13){
-        size = "this is a big pokemon"
-    } else {
-        size = " this is a medium pokemon"
-    }
-    document.write(pokedex[i].name + 
-        " ( height: " + 
-        pokedex[i].height +
-        ")"+
-        "<br/>" +
-        size +
-        "<br/>"+
-        pokedex[i].types +
-        "<br/>")
-}
+let pokemonRepo = (function() { 
+    return{
+        add: function(pokemon){ 
+            if (typeof pokemon === 'object' && typeof pokemon !== null){
+                pokedex.push(pokemon);
+                console.log(Object.values(pokemon))
+            } else {
+                console.log(pokemon + ' needs to be an object')
+            }
+        },
+        getAll: function(){
+            return pokedex;
+        }
+    };
+})();//calls the IIFE
+pokemonRepo.add({ name: 'Pikachu', height: 5, types:['electric']});
+pokemonRepo.add({ name: 'Raichu', height: 5, types:['electric']}); 
+console.log(pokemonRepo.getAll());
 
 
-
-
-// replacing wet code with dry code https://codinglead.github.io/javascript/what-is-DRY-code
-//https://careerfoundry.com/en/course/full-stack-immersion/exercise/javascript-basics-1#primitive-data-types
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
-//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-
+(function (){
+    pokedex.forEach(function(pokemon){// the forEach method takes each pokemon from the array of pokedex
+        let pokemonName = pokemon.name //forEach uses the dot notion to access the items in the array. in this case the pokemon.name is accessed and loaded into pokemonName variable each iteration through the loop
+        let pokemonHeight = pokemon.height
+        if (pokemonHeight < 5){
+            document.write(pokemonName + ' (height : ' + pokemonHeight + ')' + ' this is a lil dude<br>');//a check of pokemon.height 
+        } else {
+            document.write(pokemonName + ' (height : ' + pokemonHeight + ')'+' this is a bigger dude <br>');
+        }
+    });
+})();//(); calls the function to execute the forEach
