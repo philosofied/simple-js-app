@@ -6,6 +6,11 @@ let pokedex = [
 ]; //closes the array
 
 let pokemonRepo = (function() { 
+    let pokedex = [
+        // {name: 'Bulbasaur', height: 4, weight: 12, types:['grass', 'poison']},
+        // {name: 'Squirtle', height: 4, weight: 16, types:['water']},
+        // {name: 'Charmander', height: 11, weight: 100, types:['Fire']}
+    ];
     return{
         add: function(pokemon){ 
             if (typeof pokemon === 'object' && typeof pokemon !== null){
