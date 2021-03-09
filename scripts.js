@@ -1,5 +1,5 @@
 let pokemonRepo = (function() {
-    let pokedex = [ //global scope
+    let pokedex = [ //funciton scope
         { name: 'Bulbasaur', height: 4, weight: 12, types: ['grass', 'poison'] },
         { name: 'Squirtle', height: 4, weight: 16, types: ['water'] },
         { name: 'Charmander', height: 11, weight: 100, types: ['Fire'] }
