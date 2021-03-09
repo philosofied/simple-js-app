@@ -1,43 +1,47 @@
-// pokedex is an array with three items where each item has key value, name, height and weight and the type is another array water, grass poison etc... 
-let pokedex = [
-    {name: 'Bulbasaur', height: 4, weight: 12, types:['grass', 'poison']},
-    {name: 'Squirtle', height: 4, weight: 16, types:['water']},
-    {name: 'Charmander', height: 11, weight: 100, types:['Fire']}
-]; //closes the array
-
-let pokemonRepo = (function() { 
-    let pokedex = [
-        // {name: 'Bulbasaur', height: 4, weight: 12, types:['grass', 'poison']},
-        // {name: 'Squirtle', height: 4, weight: 16, types:['water']},
-        // {name: 'Charmander', height: 11, weight: 100, types:['Fire']}
+let pokemonRepo = (function() {
+    let pokedex = [ //global scope
+        { name: 'Bulbasaur', height: 4, weight: 12, types: ['grass', 'poison'] },
+        { name: 'Squirtle', height: 4, weight: 16, types: ['water'] },
+        { name: 'Charmander', height: 11, weight: 100, types: ['Fire'] }
     ];
-    return{
-        add: function(pokemon){ 
-            if (typeof pokemon === 'object' && typeof pokemon !== null){
-                pokedex.push(pokemon);
-                console.log(Object.values(pokemon))
-            } else {
-                console.log(pokemon + ' needs to be an object')
-            }
-        },
-        getAll: function(){
-            return pokedex;
+
+    function add(pokemon) {
+        if (
+            typeof pokemon === "object" &&
+            "name" in pokemon &&
+            "height" in pokemon &&
+            "types" in pokemon
+        ) {
+            pokedex.push(pokemon);
+        } else {
+            console.log("pokemon is not correct");
         }
+    }
+
+    function getAll() {
+        return pokedex
+    }
+    return { //returns an object, key is add and value is add
+        add: add,
+        getAll: getAll
     };
-})();//calls the IIFE
-pokemonRepo.add({ name: 'Pikachu', height: 5, types:['electric']});
-pokemonRepo.add({ name: 'Raichu', height: 5, types:['electric']}); 
+})(); //calls the IIFE
+pokemonRepo.add({ name: 'Pikachu', height: 5, types: ['electric'] });
+pokemonRepo.add({ name: 'Raichu', height: 5, types: ['electric'] });
 console.log(pokemonRepo.getAll());
 
 
-(function (){
-    pokedex.forEach(function(pokemon){// the forEach method takes each pokemon from the array of pokedex
-        let pokemonName = pokemon.name //forEach uses the dot notion to access the items in the array. in this case the pokemon.name is accessed and loaded into pokemonName variable each iteration through the loop
-        let pokemonHeight = pokemon.height
-        if (pokemonHeight < 5){
-            document.write(pokemonName + ' (height : ' + pokemonHeight + ')' + ' this is a lil dude<br>');//a check of pokemon.height 
-        } else {
-            document.write(pokemonName + ' (height : ' + pokemonHeight + ')'+' this is a bigger dude <br>');
-        }
-    });
-})();//(); calls the function to execute the forEach
+
+pokemonRepo.getAll().forEach(function(pokemon) { // the forEach method takes each pokemon from the array of pokedex
+    let size = ' '
+    if (pokemon.height > 9) {
+        size = 'thats a big pokemon'
+    } else if (pokemon.height < 5) {
+        size = 'this a smaller pokemon'
+    } else {
+        size = 'this is a medium pokemon'
+    }
+    document.write(pokemon.name + ' (height : ' + pokemon.height + ') ' + size + '<br>' + pokemon.types + '<br>'); //a check of pokemon.height 
+
+
+}); //(); calls the function to execute the forEach
