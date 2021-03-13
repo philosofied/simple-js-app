@@ -21,9 +21,29 @@ let pokemonRepo = (function() {
     function getAll() {
         return pokedex
     }
-    return { //returns an object, key is add and value is add
+
+    function showDetails(pokemon){
+        console.log(pokemon);
+    }
+
+    function addListItem(pokemon){
+        let listOfPokemon = document.querySelector(".pokemon-list");
+        let listedPokemon = document.createElement("li");
+        let button = document.createElement("button");
+        button.innerText = pokemon.name; // the pokemon will appear as a button
+        button.classList.add("button-class");
+        button.addEventListener('click', function (event){ // event here the function passed as the second param for the event listener function when it is clicked (the first param of the event listener function)
+            showDetails(pokemon);
+        });
+        listedPokemon.appendChild(button);
+        listOfPokemon.appendChild(listedPokemon);
+    
+    }
+    return { //returns an object of functions
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem
+        //showDetails: showDetails
     };
 })(); //calls the IIFE
 pokemonRepo.add({ name: 'Pikachu', height: 5, types: ['electric'] });
@@ -32,16 +52,11 @@ console.log(pokemonRepo.getAll());
 
 
 
-pokemonRepo.getAll().forEach(function(pokemon) { // the forEach method takes each pokemon from the array of pokedex
-    let size = ' '
-    if (pokemon.height > 9) {
-        size = 'thats a big pokemon'
-    } else if (pokemon.height < 5) {
-        size = 'this a smaller pokemon'
-    } else {
-        size = 'this is a medium pokemon'
-    }
-    document.write(pokemon.name + ' (height : ' + pokemon.height + ') ' + size + '<br>' + pokemon.types + '<br>'); //a check of pokemon.height 
+pokemonRepo.getAll().forEach(function(pokemon) { // the forEach method takes each pokemon from the array of pokemonRepo   
+    pokemonRepo.addListItem(pokemon); //uses the addListItem function to render each pokemon as a list item
+}); 
 
-
-}); //(); calls the function to execute the forEach
+// let button = document.querySelector("button");
+// button.addEventListener('click', function (event){ // event here the function passed as the second param for the event listener function when it is clicked (the first param of the event listener function)
+//     console.log(event);
+// });
