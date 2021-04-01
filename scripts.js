@@ -26,10 +26,11 @@ let pokemonRepository = (function() {
         let listItem = document.createElement('li');
         listItem.classList.add("group-list-item")
         let button = document.createElement('button');
+        button.classList.add("btn", "btn-primary")
 
         //takes the pokemon name adds it to a button
         button.innerText = pokemon.name
-        button.classList.add('pokedex-list__item') //see BEM styles in styles.css
+        button.classList.add('group-list-item') //see BEM styles in styles.css
 
         //adds a new list item as child and a (child) button
         listItem.appendChild(button);
