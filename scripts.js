@@ -26,7 +26,11 @@ let pokemonRepository = (function() {
         let listItem = document.createElement('li');
         listItem.classList.add("group-list-item")
         let button = document.createElement('button');
-        button.classList.add("btn", "btn-primary")
+        button.classList.add("btn", "btn-block")
+        button.setAttribute('data-toggle', 'modal');
+        button.setAttribute('data-target', '#exampleModal');
+
+
 
         //takes the pokemon name adds it to a button
         button.innerText = pokemon.name
@@ -56,9 +60,9 @@ let pokemonRepository = (function() {
 
         modalTitle.empty();
         modalBody.empty();
-        
+
         //create element for name in the modal content
-        let nameElement =$("<h1>" + pokemon.name + "</h1>");
+        let nameElement = $("<h1>" + pokemon.name + "</h1>");
         //create an image in modal content
         let imageElementFront = $('<img class="modal-img" style="width:50%>');
         imageElementFront.attr("src", pokemon.imageUrlFront);
